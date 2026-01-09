@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+contract GradeReport{
+struct student{
+string name;
+uint rollno;
+uint s1; uint s2; uint s3;}
+student[] public stds;
+function setStudent(string memory n,uint r,uint m1,uint m2,uint m3)public{
+stds.push(student(n,r,m1,m2,m3));}
+function getAverage(uint index)private view returns (uint){
+uint total=stds[index].s1+stds[index].s2+stds[index].s3;
+return total/stds.length;}
+function getReport(uint index)public view returns (string memory) {
+uint report=getAverage(index);
+if (report>=70){
+return "Distinction";
+} else if(report>=60 && report <70){
+return "First class"; } else if(report>=50 && report <60) { return "Second
+class"; }
+else return "Fail"; }
+function getStudentCount()public view returns(uint) {
+return stds.length; } }
