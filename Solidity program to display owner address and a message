@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+contract Message{
+string message;
+address owner=msg.sender;
+function setMessage(string memory _m) public{
+message=_m;}
+function getMessage() public view returns(string memory){
+return message;}
+function getOwner() public view returns(address){
+return owner;}}
