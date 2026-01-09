@@ -1,0 +1,13 @@
+A.sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+contract A{
+function showA()public pure returns(string memory){
+return "Hello from A contract";}}
+B.sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+import "./A.sol";
+contract B is A{
+function showB()public pure returns(string memory){
+return "Hello from B Contract";}}
