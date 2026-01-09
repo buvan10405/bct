@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+contract EtherTransfer {
+address public sender;
+address public receiver;
+uint public amount;
+function sendEther(address payable _receiver) public payable {
+require(msg.value > 0, "You must send some Ether");
+sender = msg.sender;
+receiver = _receiver;
+amount = msg.value;
+_receiver.transfer(msg.value);}
+function getDetails() public view returns (address, address, uint) {
+return (sender, receiver, amount);}
+function getReceiverBalance() public view returns (uint) {
+return address(receiver).balance;}
+function getSenderBalance() public view returns (uint) {
+return address(sender).balance;} }
