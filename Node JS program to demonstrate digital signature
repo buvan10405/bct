@@ -1,0 +1,24 @@
+AIM: To write and execute a Node JS program to demonstrate digital
+signature
+PROCESS:
+a) Create a folder “BCTLAB” and open it in VS Code IDE
+b) Create a new file “DigitalSignature.js” , write below code and save it.
+c) Open Terminal and type below commands
+npm install prompt-sync
+node DigitalSignature.js
+code:
+const prompt=require("prompt-sync")()
+const { generateKeyPairSync, createSign, createVerify } = require("crypto");
+const { publicKey, privateKey } = generateKeyPairSync("rsa",{
+modulusLength: 2048,});
+let msg = prompt("Enter a message:");
+const sign = createSign("SHA256");
+sign.update(msg);
+sign.end();
+const signature = sign.sign(privateKey, "hex");
+console.log("Digital Signature created for the message:"+msg)
+msg = prompt("Enter message to verify:");
+const verify = createVerify("SHA256");
+verify.update(msg);
+verify.end();
+console.log("Signature Verified:", verify.verify(publicKey,signature, "hex"));
